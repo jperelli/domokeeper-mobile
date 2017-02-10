@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <script src="js/app.js"></script>
+  </head>
+  <body>
+
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Connect to domokeeper</h1>
+      </ion-header-bar>
+      <ion-content ng-controller="MainCtrl">
+        <div class="card">
+          <div ng-show="net" class="item item-text-wrap">
+            Detected network<br>{{net}}.0
+          </div>
+        </div>
+        <div class="card">
+          <div class="item item-divider">
+            Servers
+          </div>
+          <div class="item item-text-wrap" ng-show="!scanning">
+            <span ng-click="scannet()" class="button button-full button-positive">Scan net for domokeeper servers</span>
+          </div>
+          <div class="item item-text-wrap" ng-show="!scanning" ng-repeat="s in servers">
+            {{s}}
+          </div>
+          <div class="item item-text-wrap" ng-show="scanning">
+            Scanning, please wait
+            <progress value="{{scani}}" max="254"></progress>
+          </div>
+        </div>
+      </ion-content>
+    </ion-pane>
+
+    <script type="text/javascript">
+    //initApp();
+      document.addEventListener('deviceready', function onDeviceReady() {   
+        initApp()
+      }, false);
+    </script>
+
+  </body>
+</html>
