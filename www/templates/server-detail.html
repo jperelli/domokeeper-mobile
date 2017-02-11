@@ -1,0 +1,22 @@
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">{{server.ip}}:{{server.port}}</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        Plugins installed
+      </div>
+      <a class="item item-text-wrap" ng-repeat="p in plugins" href="#/server/{{server.ip}}:{{server.port}}/plugin/{{p.name}}">
+        <h2>{{ p.name }}</h2>
+        <p>{{ p.description }}</p>
+        <span class="item-note">
+          v{{ p.version }}
+        </span>
+      </a>
+      <div class="item item-text-wrap">
+        <a ng-href="#/server/{{server.ip}}:{{server.port}}/install" class="button button-full button-positive">Install more plugins</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-pane>

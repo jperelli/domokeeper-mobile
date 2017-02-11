@@ -1,0 +1,30 @@
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Connect to domokeeper</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="card">
+      <div ng-show="net" class="item item-text-wrap">
+        Detected network<br>{{net}}.0
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-divider">
+        Servers
+      </div>
+      <div class="item item-text-wrap" ng-show="!scanning">
+        <span ng-click="scannet()" class="button button-full button-positive">rescan net for domokeeper servers</span>
+      </div>
+      <a class="item item-text-wrap" ng-show="!scanning" ng-repeat="s in servers" ng-href="#/server/{{s.ip}}:{{s.port}}">
+        {{ s.hostname }}
+        <span class="item-note">
+          v{{ s.version }} ({{ s.ip }}:{{ s.port }})
+        </span>
+      </a>
+      <div class="item item-text-wrap" ng-show="scanning">
+        Scanning, please wait
+        <progress value="{{scani}}" max="254"></progress>
+      </div>
+    </div>
+  </ion-content>
+</ion-pane>
